@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/customer")
+@RequestMapping(path = "api/v1/customers")
 @Deprecated
 public class CustomerController {
 
@@ -18,9 +18,9 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping(value = "all")
-    public List<Customer> getCustomer(){
-        return customerService.getCustomer();
+    @GetMapping
+    public List<Customer> getCustomers(){
+        return customerService.getCustomers();
     }
 
     @PostMapping

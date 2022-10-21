@@ -17,7 +17,23 @@ public class CustomerService {
         this.customerRepo = customerRepo;
     }
 
-    public List<Customer> getCustomer(){
+    public List<Customer> getCustomers(){
         return customerRepo.getCustomer();
     }
+
+    Customer getCustomer(Long id) {
+        return getCustomers().stream()
+                .filter(customer -> customer.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("customer not found"));
+    }
+
+//    public void saveCustomer(Customer customer) {
+//        if(customer.getName()!=null && customer.getPassword()!=null) {
+//            System.out.println(customer);
+//        }
+//        else {
+//            throw new IllegalStateException("no name and password given");
+//        }
+//    }
 }

@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v2/customer")
+@RequestMapping(path = "api/v2/customers")
 public class CustomerControllerV2 {
 
     private final CustomerService customerService;
@@ -17,16 +17,22 @@ public class CustomerControllerV2 {
         this.customerService = customerService;
     }
 
-    @GetMapping(value = "all")
+    @GetMapping
     public List<Customer> getCustomer(){
         return Collections.singletonList(
                 new Customer(0L, "v2", "v2password")
         );
     }
 
+    @GetMapping("{customerId}")
+    public Customer getCustomers(@PathVariable("customerId") Long id){
+        return customerService.getCustomer(id);
+    }
+
     @PostMapping
     void createCustomer(@RequestBody Customer customer) {
         System.out.println("POST REQUEST..");
+//        customerService.saveCustomer(customer);
         System.out.println(customer);
     }
 
